@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        padding: 50px;
+      }
+
+      .box {
+        display: flex;
+        width: 250px;
+        height: 250px;
+      }
+
+      #box1 {
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+        font-size: 35px;
+        background-color: #acfffc;
+      }
+
+      #box2 {
+        flex-flow: row wrap;
+        position: relative;
+        padding: 35px;
+        background-color: #b6ffaa;
+      }
+
+      #box2 .title {
+        position: absolute;
+        top: 8px;
+        left: 0;
+        width: 100%;
+        font-size: 18px;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .cell {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: 900;
+        opacity: 0.1;
+      }
+
+      .on {
+        opacity: 1;
+      }
+
+      #cell-1,
+      #cell-4 {
+        color: #ffffff;
+        background-color: #000000;
+      }
+
+      #cell-2,
+      #cell-3 {
+        color: #000000;
+        background-color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1" class="box">mousemove</div>
+    <div id="box2" class="box">
+      <b class="title">mouseover / mouseout</b>
+      <div id="cell-1" class="cell">cell-1</div>
+      <div id="cell-2" class="cell">cell-2</div>
+      <div id="cell-3" class="cell">cell-3</div>
+      <div id="cell-4" class="cell">cell-4</div>
+    </div>
+
+    <script>
+      /**
+       * [마우스 이동 이벤트]
+       *
+       * > MouseEvent.type
+       * mousemove: 마우스 포인터가 움직일 때
+       * mouseover: 마우스 포인터가 요소 밖에서 안으로 움직일 때
+       * mouseout: 마우스 포인터가 요소 안에서 밖으로 움직일 때
+       *
+       * > MouseEvent.target
+       * : 이벤트가 발생한 요소
+       *
+       * > MouseEvent.relatedTarget
+       * : 이벤트가 발생하기 직전(또는 직후)에 마우스가 위치해 있던 요소
+       */
+
+      const box2 = document.querySelector('#box2');
+
+      function printEventData(e) {
+        console.log('event:', e.type);
+        console.log('target:', e.target);
+        console.log('relatedTarget:', e.relatedTarget);
+        console.log('------------------------------------');
+        if (e.target.classList.contains('cell')) {
+          e.target.classList.toggle('on');
+        }
+      }
+
+      box2.addEventListener('mouseover', printEventData);
+      box2.addEventListener('mouseout', printEventData);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #mouse {
+        width: 240px;
+        height: 390px;
+        border: 1px solid #333333;
+        border-radius: 150px;
+        overflow: hidden;
+      }
+
+      #btns {
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 150px;
+        border-bottom: 1px solid #333333;
+      }
+
+      #btn0 {
+        width: calc(50% - 1px);
+        height: 100%;
+        border-right: 1px solid #333333;
+      }
+
+      #btn1 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        width: 40px;
+        height: 90px;
+        border: 1px solid #333333;
+        border-radius: 20px;
+      }
+
+      #btn2 {
+        width: 50%;
+        height: 100%;
+      }
+
+      .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: 900;
+      }
+
+      .clicked-0 #btn0 {
+        background-color: #eb2f2f;
+      }
+
+      .clicked-1 #btn1 {
+        background-color: #ffb62e;
+      }
+
+      .clicked-2 #btn2 {
+        background-color: #ffff58;
+      }
+
+      .dblclick #btn0 {
+        background-color: #0cb30c;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mouse">
+      <div id="btns">
+        <div id="btn0" class="btn"></div>
+        <div id="btn1" class="btn"></div>
+        <div id="btn2" class="btn"></div>
+      </div>
+    </div>
+
+    <script>
+      let timer = 0;
+
+      function printEventType(e) {
+        const EVENT_DURATION = 800;
+        const eventTime = new Date();
+
+        if (timer === 0) {
+          timer = new Date();
+        }
+
+        if (eventTime - timer > EVENT_DURATION) {
+          console.log('--------------------------');
+        }
+
+        if (e.target.id !== 'mouse') {
+          e.preventDefault();
+        }
+
+        const btns = document.querySelector(`#btns`);
+        const btn = document.querySelector(`#btn${e.button}`);
+        btns.classList.add(`clicked-${e.button}`);
+        btn.textContent = e.button;
+        console.log(`${e.type} 이벤트가 발생했습니다.`);
+
+        if (e.type === 'dblclick') {
+          btns.className = 'dblclick';
+        }
+
+        function styleInit() {
+          btns.className = '';
+          btn.textContent = '';
+        }
+
+        setTimeout(styleInit, EVENT_DURATION);
+
+        timer = eventTime;
+      }
+
+      document.addEventListener('click', printEventType);
+      document.addEventListener('contextmenu', printEventType);
+      document.addEventListener('dblclick', printEventType);
+      document.addEventListener('mouseup', printEventType);
+      document.addEventListener('mousedown', printEventType);
+    </script>
+  </body>
+</html>

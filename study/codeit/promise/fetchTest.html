@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // fetch('https://learn.codeit.kr/api/members/3')
+      //   .then((response) => response.text())
+      //   .then((result) => console.log(result));
+
+      /**
+       * POST Request
+       */
+      const newMember = {
+        name: 'Chocola',
+        email: 'chocola@codeitmall.kr',
+        department: 'witch',
+      };
+
+      // 두번째 파라미터에 옵션객체 넣기
+      // fetch('https://learn.codeit.kr/api/members', {
+      //   method: 'POST', // 기본값 GET
+      //   body: JSON.stringify(newMember),
+      // })
+      //   .then((response) => response.text())
+      //   .then((result) => console.log(result));
+
+      /**
+       * PUT Request
+       */
+      const member = {
+        name: 'Alice',
+        email: 'alice@codeitmall.kr',
+        department: 'marketing',
+      };
+
+      fetch('https://learn.codeit.kr/api/members/2', {
+        method: 'PUT',
+        body: JSON.stringify(member),
+      })
+        .then((response) => response.text())
+        .then((result) => console.log(result));
+
+      /**
+       * DELETE Request
+       */
+      fetch('https://learn.codeit.kr/api/members/7', {
+        method: 'DELETE',
+      })
+        .then((response) => response.text())
+        .then((result) => console.log(result));
+
+      // satus code
+      // fetch('https://blog.naver.com/stgsfsrthxdscrvtt')
+      //   .then((response) => {
+      //     console.log(response.status); // 500
+      //   });
+    </script>
+  </body>
+</html>

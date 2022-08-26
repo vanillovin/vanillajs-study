@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-image: url('imgs/background.jpg');
+        background-position: right;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      body::after {
+        display: block;
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #ababac;
+        opacity: 0.3;
+        z-index: -1;
+      }
+
+      .main {
+        width: 360px;
+        min-height: 350px;
+        margin: 40px;
+        padding: 20px 0;
+        background-color: rgba(235, 236, 240, 0.95);
+        box-shadow: 0px 0px 10px #babecc;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .title {
+        margin: 20px auto 35px;
+        font-size: 32px;
+        font-weight: 900;
+        color: #545454;
+        text-shadow: 1px 1px 1px #ffffff;
+      }
+
+      .input {
+        display: block;
+        width: 80%;
+        height: 50px;
+        margin: 10px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-shadow: 1px 1px 0 #ffffff;
+        box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff;
+        background-color: #ebecf0;
+        border: none;
+        border-radius: 320px;
+        transition: all 0.2s ease-in-out;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+
+      .input:focus {
+        box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #ffffff;
+      }
+
+      .btn {
+        width: 80%;
+        height: 50px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 320px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #545454;
+        text-shadow: 1px 1px 0 #ffffff;
+        box-shadow: -5px -5px 20px #ffffff, 5px 5px 20px #babecc;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .btn:hover {
+        box-shadow: -2px -2px 5px #ffffff, 2px 2px 5px #babecc;
+      }
+
+      .btn:active {
+        box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h2 class="title">이메일 찾기</h2>
+      <input id="user-name" class="input" type="text" placeholder="User Name" />
+      <input
+        id="phone-number"
+        class="input"
+        type="text"
+        placeholder="Phone Number"
+      />
+      <button id="find" class="btn">Find</button>
+    </div>
+
+    <script>
+      const nameInput = document.querySelector('#user-name');
+      const phoneInput = document.querySelector('#phone-number');
+      const findBtn = document.querySelector('#find');
+
+      const data = [
+        {
+          userName: '이민지',
+          phoneNumber: '01041675012',
+          email: 'serenity@gmail.com',
+        },
+        {
+          userName: '막대기',
+          phoneNumber: '01012341111',
+          email: 'stick@go_do_it.kr',
+        },
+        {
+          userName: 'young',
+          phoneNumber: '01012342222',
+          email: 'kang@go_do_it.kr',
+        },
+        {
+          userName: '코린이',
+          phoneNumber: '01012343333',
+          email: 'corin2@go_do_it.kr',
+        },
+        {
+          userName: 'captain',
+          phoneNumber: '01012344444',
+          email: 'crew@go_do_it.kr',
+        },
+        {
+          userName: 'YH',
+          phoneNumber: '01012345555',
+          email: 'whyH@go_do_it.kr',
+        },
+        {
+          userName: '망고쥬스',
+          phoneNumber: '01012346666',
+          email: 'drinkMango@go_do_it.kr',
+        },
+        {
+          userName: 'nemoming',
+          phoneNumber: '01012347777',
+          email: 'ractAngle@go_do_it.kr',
+        },
+        {
+          userName: '강그루',
+          phoneNumber: '01012348888',
+          email: 'riverTree@go_do_it.kr',
+        },
+        {
+          userName: '개룩발룩',
+          phoneNumber: '01012349999',
+          email: 'checkShirts@go_do_it.kr',
+        },
+        {
+          userName: '오렌지쥬스',
+          phoneNumber: '01012341010',
+          email: 'delmonte@go_do_it.kr',
+        },
+      ];
+
+      function findEmail() {
+        const nameValue = nameInput.value;
+        const phoneValue = phoneInput.value;
+
+        // 여기에 코드를 작성해 주세요.
+        const user = data.find((el) => {
+          return el.userName === nameValue && el.phoneNumber === phoneValue;
+        });
+
+        const message = user
+          ? `${user.userName}님의 이메일은 ${user.email} 입니다.`
+          : '이메일을 찾을 수 없습니다. 입력 정보를 다시 확인해 주세요.';
+
+        alert(message);
+      }
+
+      findBtn.addEventListener('click', findEmail);
+    </script>
+  </body>
+</html>

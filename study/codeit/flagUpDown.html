@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-size: cover;
+        background-position: center;
+        background-image: url('imgs/bg.png');
+        background-repeat: no-repeat;
+      }
+
+      body::before {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #333333;
+        opacity: 0.5;
+        content: '';
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 80%;
+        height: 500px;
+        max-width: 1000px;
+      }
+
+      .flag {
+        width: 35%;
+        transition-duration: 0.3s;
+      }
+
+      .flag-blue {
+        transform: rotate(25deg);
+      }
+
+      .flag-white {
+        transform: rotate(-25deg) scaleX(-1);
+      }
+
+      .flag-blue.up {
+        transform: rotate(-25deg) translateY(-40%);
+      }
+
+      .flag-white.up {
+        transform: rotate(25deg) scaleX(-1) translateY(-40%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="imgs/flag-blue.png" alt="flag" class="flag flag-blue" />
+      <img src="imgs/flag-white.png" alt="flag" class="flag flag-white" />
+    </div>
+
+    <script>
+      const flagBlue = document.querySelector('.flag-blue');
+      const flagWhite = document.querySelector('.flag-white');
+
+      function reset() {
+        document.querySelector('.up').classList.remove('up');
+      }
+
+      // 1. flagUp 함수를 완성해 주세요.
+      function flagUp(e) {
+        if (e.button === 0) {
+          flagBlue.classList.add('up');
+        } else if (e.button === 2) {
+          flagWhite.classList.add('up');
+        }
+        // 500 밀리초 뒤에 reset함수를 실행
+        setTimeout(reset, 500);
+      }
+
+      // 2. 마우스 오른쪽 버튼 클릭시 나타나는 메뉴창을 막아주세요.
+      document.addEventListener('contextmenu', function (event) {
+        event.preventDefaulte();
+      });
+
+      // 테스트 코드
+      document.addEventListener('mousedown', flagUp);
+    </script>
+  </body>
+</html>

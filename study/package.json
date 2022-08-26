@@ -1,0 +1,15 @@
+{
+  "name": "vanilla_js",
+  "version": "1.0.0",
+  "description": "vanilla javascript parctice",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vanillovin",
+  "license": "ISC",
+  "dependencies": {}
+}

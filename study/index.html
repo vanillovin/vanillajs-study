@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class</title>
+  </head>
+  <body>
+    <form id="testForm">
+      <input type="text" placeholder="subar" />
+    </form>
+
+    <script>
+      // import { on } from "./helper.js";
+      function on(target, eventName, handler) {
+        target.addEventListener(eventName, handler);
+      }
+
+      // View.js
+      class View {
+        constructor(element) {
+          console.log('constructor');
+          if (!element) throw 'no element';
+          this.element = element;
+          return this;
+        }
+
+        on(eventName, handler) {
+          on(this.element, eventName, handler);
+          return this;
+        }
+      }
+
+      // import View from './View.js'
+      class FormView extends View {
+        constructor(text, sweet) {
+          // super(qs("#search-form-view"));
+          super(document.querySelector('#testForm'));
+          this.text = text;
+          this.sweet = sweet;
+        }
+        testLog() {
+          console.log('element', this.element);
+          console.log('text', this.text);
+          console.log('sweet', this.sweet);
+        }
+      }
+      const test = new FormView('text~', 'chocolate cake');
+      test.testLog();
+    </script>
+  </body>
+</html>

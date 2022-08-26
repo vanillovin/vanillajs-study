@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #form {
+        width: 250px;
+        height: 250px;
+        margin: 70px 30px;
+        padding: 30px;
+        box-shadow: 2px 2px 10px #bfbfbf;
+        border-radius: 5px;
+      }
+
+      .title {
+        margin: 10px 0 15px;
+        text-align: center;
+        color: #6502c2;
+      }
+
+      .input {
+        width: 100%;
+        height: 35px;
+        margin: 5px 0;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        cursor: pointer;
+      }
+
+      .btn {
+        width: 100%;
+        height: 40px;
+        margin: 15px 0 10px;
+        color: #ffffff;
+        border: none;
+        background-image: linear-gradient(276deg, #710ad2, #8e43e6);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="form">
+      <h1 class="title">Hello !</h1>
+      <input type="text" id="username" class="input" placeholder="Username" />
+      <input
+        type="password"
+        id="password"
+        class="input"
+        placeholder="Password"
+      />
+      <input type="button" id="submit" class="btn" value="Sign in" />
+      <input type="checkbox" id="checkbox" />
+      <label for="checkbox">Stay Signed in</label>
+    </div>
+
+    <script>
+      /**
+       * [input 태그 다루기]
+       *
+       * > 포커스 이벤트
+       * focusin: 요소에 포커스가 되었을 때
+       * focusout: 요소에 포커스가 빠져나갈 때
+       * focus: 요소에 포커스가 되었을 때 (버블링 x)
+       * blur: 요소에 포커스가 빠져나갈 때 (버블링 x)
+       *
+       * > 입력 이벤트
+       * input: 사용자가 입력을 할 때
+       * change: 요소의 값이 변했을 때
+       */
+
+      const el = document.querySelector('#form');
+
+      function printEventType(e) {
+        console.log('type:', e.type);
+        console.log('target:', e.target);
+        console.log('---------');
+      }
+
+      el.addEventListener('focusin', printEventType);
+      el.addEventListener('focusout', printEventType);
+      el.addEventListener('input', printEventType);
+      el.addEventListener('change', printEventType);
+    </script>
+  </body>
+</html>

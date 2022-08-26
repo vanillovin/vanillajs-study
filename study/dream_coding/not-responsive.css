@@ -1,0 +1,39 @@
+/*
+box 자체의 사이즈를 결정할 때: %, v*(뷰포트 관련), flex box 사용으로 유동적
+font-size를 결정할 때: 부모 요소에 따라서 변동되야 한다면 em, root 상대로 변하려면 rem
+*/
+
+h1 {
+  font-size: 1.75rem; /* 28px / pxtoem.com */
+  color: burlywood;
+  margin: auto;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  padding: 2em; /* 32px */
+}
+
+.component {
+  border: 1px solid burlywood;
+  margin: 1em; /* 16px */
+}
+
+.title {
+  font-size: 1.5rem; /* title, header 등 글자들이 어떤 컴포넌트에 쓰이냐에 상관없이 동일한 사이즈 유지*/
+  padding: 1em; /* 16px / 폰트 사이즈에 따라 발생하는 사이즈는 em을 사용 */
+  background-color: burlywood;
+}
+
+.contents {
+  font-size: 1.125rem;
+  padding: 1em;
+}
+
+@media screen and (max-width: 48rem) {
+  /* 미디어쿼리는 브라우저 스크린에 영향을 받기 때문에 rem 사용*/
+  .container {
+    flex-direction: column;
+  }
+}
